@@ -6,8 +6,10 @@ import 'package:http/http.dart';
 
 class TranslattingData extends GetxController {
   RxString trans = ''.obs;
+  RxBool loading = false.obs;
 
   Future transtalteData(String code, String text) async {
+    loading.value = true;
     final data = await post(
         Uri.parse('https://text-translator2.p.rapidapi.com/translate'),
         headers: {
@@ -23,9 +25,14 @@ class TranslattingData extends GetxController {
         });
     // final decode = utf8.decoder;
     // var encodeByte = jsonDecode(data.body.toString())['data']['translatedText'];
-    print(jsonDecode(data.body.toString()).toString());
-    trans.value = jsonDecode(data.body.toString())['data']['translatedText'];
-
-    return jsonDecode(data.body.toString());
+    if (data.statusCode == 200) {
+      print(jsonDecode(data.body.toString()).toString());
+      trans.value = jsonDecode(data.body.toString())['data']['translatedText'];
+      loading.value = false;
+      return jsonDecode(data.body.toString());
+    } else {
+      loading.value = false;
+      return jsonDecode(data.body.toString());
+    }
   }
 }

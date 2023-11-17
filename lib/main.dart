@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:rapid_api/home_screen.dart';
 import 'package:rapid_api/translator.dart';
+import 'package:rapid_api/view/movies/movies_list_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -31,9 +32,9 @@ class MyApp extends StatelessWidget {
         // This works for code too, not just values: Most code changes can be
         // tested with just a hot reload.
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
+        // useMaterial3: true,
       ),
-      home: TranslatorScreen(),
+      home: MoviesListScreen(),
     );
   }
 }

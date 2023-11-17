@@ -40,7 +40,7 @@ class _TranslateScreenState extends State<TranslateScreen> {
                 }
                 return;
               },
-              child: Text('Translate')),
+              child: const Text('Translate')),
           Obx(() => Text(contorller.trans.toString()))
         ],
       ),
