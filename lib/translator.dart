@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/utils.dart';
 import 'package:rapid_api/get_translate_model.dart';
 import 'package:rapid_api/translator_screen.dart';
 
@@ -16,8 +17,18 @@ class TranslatorScreen extends StatelessWidget {
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             return ListView.builder(
+                itemCount: snapshot.data!.length,
                 itemBuilder: (context, index) => Card(
                       child: ListTile(
+                        leading: CircleAvatar(
+                          child: Text(
+                            snapshot.data![index].code
+                                .toString()
+                                .toUpperCase()
+                                .toString(),
+                            style: TextStyle(color: Colors.black),
+                          ),
+                        ),
                         onTap: () => Navigator.push(
                             context,
                             MaterialPageRoute(
